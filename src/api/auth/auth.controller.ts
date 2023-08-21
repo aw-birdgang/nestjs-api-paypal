@@ -15,6 +15,6 @@ export class AuthController {
         description: '유저 토큰 생성 한다.',
     })
     async getAccessToken(): Promise<any> {
-        // return this.authService.getAccessToken();
+        return this.authService.getAccessToken();
     }
 }
