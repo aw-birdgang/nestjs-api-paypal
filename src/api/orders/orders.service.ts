@@ -5,6 +5,7 @@ import {CreatePaypalOrderDto, InitiateOrderHeadersDto, PaypalOrderDto} from "@ap
 import {HttpService} from "@nestjs/axios";
 import {catchError, firstValueFrom, lastValueFrom, map, Observable} from "rxjs";
 import {AxiosError, AxiosResponse} from "axios";
+import {UpdatePaypalOrderDto} from "@app/dtos/order";
 
 @Injectable()
 export class OrdersService {
@@ -45,27 +46,25 @@ export class OrdersService {
         );
     }
 
-    // async updateOrder(orderId: string, updateOrderDto: UpdatePaypalOrderDto[]): Promise<any | void> {
-    //     const _headers = await this._preparePaypalRequestHeaders();
-    //     const environment = this.configService.get("PAYPAL_ENVIRONMENT");
-    //     const apiUrl = this.configService.getApiUrl(environment);
-    //     return this.httpService.patch(`${apiUrl}/v2/checkout/orders/${orderId}`, updateOrderDto, {
-    //         headers: _headers
-    //     }).then(r => {
-    //         if(r.status === 204) {
-    //             return {
-    //                 message: `Order updated successfully.!`
-    //             }
-    //         }
-    //         return r.data;
-    //     }).catch(e => {
-    //         throw {
-    //             ...PaypalErrorsConstants.UPDATE_ORDER_FAILED,
-    //             nativeError: e?.response?.data || e
-    //         }
-    //     })
-    // }
-    //
+    async updateOrder(orderId: string, updateOrderDto: UpdatePaypalOrderDto[]): Promise<PaypalOrderDto> {
+        const _headers = await this._preparePaypalRequestHeaders();
+        const environment = this.configService.get("PAYPAL_ENVIRONMENT");
+        const apiUrl = this.configService.getApiUrl(environment);
+        this.logger.log(`updateOrder >> orderId :: ${orderId}`)
+
+        return await firstValueFrom(
+            this.httpService.post(`${apiUrl}/v2/checkout/orders/${orderId}`, updateOrderDto,{
+                headers: _headers
+            }).pipe(
+                map(response => response?.data),
+                // catchError((error: AxiosError) => {
+                // ...PaypalErrorsConstants.INITIATE_ORDER_FAILED,
+                //         nativeError: errors?.response?.data || errors
+                //     }
+            )
+        );
+    }
+
 
 
     findOrderById(baseUrl: string, orderId: string): Observable<AxiosResponse<PaypalOrderDto>> {
@@ -93,26 +92,6 @@ export class OrdersService {
         );
         this.logger.log("result.status :: " + result.status);
         return result;
-
-        // return this.httpService.get(
-        //     `${apiUrl}/v2/checkout/orders/${orderId}`,
-        //     {
-        //         headers
-        //     }
-        // ).then(r => {
-        //     if(r.status === 200) {
-        //         return r.data;
-        //     }
-        //     throw {
-        //         message: 'Un-expected error',
-        //         data: r.data
-        //     }
-        // }).catch(e => {
-        //     throw {
-        //         ...PaypalErrorsConstants.GET_ORDER_FAILED,
-        //         nativeError: e?.response?.data || e
-        //     }
-        // })
     }
 
 

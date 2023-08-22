@@ -1,4 +1,4 @@
-import {Body, Controller, Get, HttpStatus, Logger, Param, Post, Query, Res} from '@nestjs/common';
+import {Body, Controller, Get, HttpStatus, Logger, Param, Post, Put, Query, Res} from '@nestjs/common';
 import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {OrdersService} from "@app/api/orders/orders.service";
 import {CreatePaypalOrderDto} from "@app/dtos";
@@ -36,10 +36,58 @@ export class OrdersController {
                 }
             ]
         };
-        return this.ordersService.initiateOrder(payload, {
+        const response = await this.ordersService.initiateOrder(payload, {
             Prefer: "return=representation"
         });
+        return res.status(HttpStatus.OK).json(instanceToPlain(response));
     }
+
+
+    @Put()
+    @ApiOperation({
+        summary: '주문 수정 API',
+        description: '주문 수정 한다.',
+    })
+    @ApiOkResponse({
+        description: '주문 정보를 수정 합니다.',
+    })
+    async updateOrder(
+        @Body() requestDto: CreatePaypalOrderDto,
+        @Res() res: Response,
+    ): Promise<any> {
+        const payload: CreatePaypalOrderDto = {
+            intent: "CAPTURE",
+            purchase_units: [
+                {
+                    amount: {
+                        "currency_code": "USD",
+                        "value": "100.00"
+                    },
+                    reference_id: "monitor"
+                }
+            ]
+        };
+
+        const order = await this.ordersService.initiateOrder(payload, {
+            Prefer: "return=representation"
+        });
+        const updateResponse = await this.ordersService.updateOrder(order.id, [
+            {
+                op: 'add',
+                path: `/purchase_units/@reference_id=='${order.purchase_units[0].reference_id}'/shipping/address`,
+                value: {
+                    "address_line_1": "123 Townsend St",
+                    "address_line_2": "Floor 6",
+                    "admin_area_2": "San Francisco",
+                    "admin_area_1": "CA",
+                    "postal_code": "94107",
+                    "country_code": "US"
+                }
+            }
+        ]);
+        return res.status(HttpStatus.OK).json(instanceToPlain(updateResponse));
+    }
+
 
     @Get(':id')
     @ApiOperation({
