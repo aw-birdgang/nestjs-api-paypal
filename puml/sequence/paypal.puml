@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant customer
+participant merchant
+participant paypal
+
+
+
+customer -> merchant : User accesses the checkout page.
+activate merchant
+merchant --> customer
+deactivate merchant
+
+customer -> merchant : Customer selects PayPal Plus as payment method.
+activate merchant
+merchant -> paypal : 1. Creates a payment session with the items being sold, \n values and customer informations through REST API.
+
+activate paypal
+paypal --> merchant: Returns the payment session ID.
+deactivate paypal
+
+merchant -> paypal : 2. Renders paypal plus through JS library.
+activate paypal
+merchant --> customer :
+deactivate merchant
+
+customer -> paypal : User inserts Credit Card info into the iFrame's fields.
+activate paypal
+paypal --> customer : Validates credit card BIN.
+deactivate paypal
+paypal --> merchant :
+deactivate paypal
+
+
+customer -> merchant : User click the Place Order button.
+activate merchant
+merchant -> paypal : 3. Captures the payment through REST API.
+activate paypal
+paypal --> merchant
+deactivate paypal
+
+merchant --> customer : Redirects the user to the order compleition page.
+deactivate customer
+
+@enduml
