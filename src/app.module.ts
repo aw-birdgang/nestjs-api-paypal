@@ -3,6 +3,7 @@ import { AuthModule } from './api/auth/auth.module';
 import { OrdersModule } from './api/orders/orders.module';
 import { TransactionModule } from './api/transaction/transaction.module';
 import { PaymentsModule } from './api/payments/payments.module';
+import { CatalogProductsModule } from './api/catalog-products/catalog-products.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { PaymentsModule } from './api/payments/payments.module';
     OrdersModule,
     TransactionModule,
     PaymentsModule,
+    CatalogProductsModule,
   ],
 })
 export class AppModule {}
