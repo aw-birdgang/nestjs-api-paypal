@@ -8,6 +8,8 @@ import {UpdatePaypalOrderDto} from "@app/dtos/order";
 import {AxiosResponse} from "axios";
 import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
 import {CatalogsProductsResponseDto} from "@app/dtos/catalog-products/catalogs-product-response.dto";
+import {PaypalCatalogProductDto} from "@app/dtos/catalog-products/paypal-catalog-product.dto";
+import {ProductsResponseDto} from "@app/dtos/catalog-products/product-response.dto";
 
 @Injectable()
 export class CatalogProductsService {
@@ -62,12 +64,29 @@ export class CatalogProductsService {
             )
             .pipe(
                 map(response => response?.data),
-                // catchError((error: AxiosError) => {
-                //         this.logger.error(`upload file fail : ${error}`)
-                //         throw 'upload file fail'
-                //     }
             )
         );
+    }
+
+
+    async getCatalogProductDetails(productId: string): Promise<ProductsResponseDto | void> {
+        const headers = await this._preparePaypalRequestHeaders();
+        const environment = this.configService.get("PAYPAL_ENVIRONMENT");
+        const apiUrl = this.configService.getApiUrl(environment);
+        this.logger.log(`request url :: ${apiUrl}/v1/catalogs/products/${productId}`);
+        //
+        const requestUrl = `${apiUrl}/v1/catalogs/products/${productId}`;
+
+        const result = await lastValueFrom(
+            this.httpService.get(requestUrl, { headers })
+            .pipe(
+                map((response) => {
+                    return response.data;
+                }),
+            )
+        );
+        this.logger.log("result.status :: " + result.status);
+        return result;
     }
 
 }
