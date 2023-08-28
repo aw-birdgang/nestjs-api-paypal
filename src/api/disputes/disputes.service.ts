@@ -2,21 +2,21 @@ import {Injectable, Logger} from '@nestjs/common';
 import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
 import {AuthService} from "@app/api/auth/auth.service";
-import {firstValueFrom, lastValueFrom, map} from "rxjs";
 import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
-import {CatalogsProductsResponseDto} from "@app/dtos/catalog-products/catalogs-product-response.dto";
-import {ProductsResponseDto} from "@app/dtos/catalog-products/product-response.dto";
-import {CreateCatalogProductsDto} from "@app/dtos/catalog-products/create-catalog-products.dto";
+import {firstValueFrom, lastValueFrom, map} from "rxjs";
+import {CreateDisputesDto} from "@app/dtos/disputes/create-disputes.dto";
+import {DisputeResponseDto} from "@app/dtos/disputes/dispute-response.dto";
+import {DisputesResponseDto} from "@app/dtos/disputes/disputes-response.dto";
 
 @Injectable()
-export class CatalogProductsService {
+export class DisputesService {
     constructor(
         private readonly configService: ConfigService,
         private readonly httpService: HttpService,
         private authService: AuthService,
     ) {}
 
-    private readonly logger = new Logger(CatalogProductsService.name);
+    private readonly logger = new Logger(DisputesService.name);
 
     async _preparePaypalRequestHeaders(customHeaders?: any) {
         const initiateTokenResponse = await this.authService.getAccessToken();
@@ -24,22 +24,23 @@ export class CatalogProductsService {
         this.logger.log(`access_token :: ${access_token}`)
         return {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
             'Authorization': access_token ? `Bearer ${access_token}` : `Basic ${this.authService.getBasicKey()}`,
             ...customHeaders
         };
     }
 
-    async createCatalogProducts(orderPayload: CreateCatalogProductsDto, headers?: InitiateCatalogProductsHeadersDto): Promise<ProductsResponseDto> {
+
+    async createDisputes(orderPayload: CreateDisputesDto, headers?: InitiateCatalogProductsHeadersDto): Promise<DisputeResponseDto> {
         const _headers = await this._preparePaypalRequestHeaders(headers);
         const environment = this.configService.get("PAYPAL_ENVIRONMENT");
         const apiUrl = this.configService.getApiUrl(environment);
+        const id = "";
         //
-        const requestUrl = `${apiUrl}/v1/catalogs/products`;
-        this.logger.log(`createCatalogProducts > request url :: ` + requestUrl);
+        const requestUrl = `${apiUrl}/v1/customer/disputes/${id}/acknowledge-return-item`;
+        this.logger.log(`createDisputes > request url :: ` + requestUrl);
 
         return await firstValueFrom(
-            this.httpService.post(`${apiUrl}/v1/catalogs/products`, orderPayload, {
+            this.httpService.post(requestUrl, orderPayload, {
                 headers: _headers
             }).pipe(
                 map(response => response?.data),
@@ -52,13 +53,17 @@ export class CatalogProductsService {
     }
 
 
-    async getProductions(): Promise<CatalogsProductsResponseDto> {
+    async getDisputes(): Promise<DisputesResponseDto> {
         const headers = await this._preparePaypalRequestHeaders();
         const environment = this.configService.get("PAYPAL_ENVIRONMENT");
         const apiUrl = this.configService.getApiUrl(environment);
+        //
+        const requestUrl = `${apiUrl}/v1/customer/disputes`;
+        this.logger.log(`getDisputes > request url :: ` + requestUrl);
+
         return await lastValueFrom(
             this.httpService.get(
-                `${apiUrl}/v1/catalogs/products`,
+                requestUrl,
                 {
                     headers
                 }
@@ -69,25 +74,5 @@ export class CatalogProductsService {
         );
     }
 
-
-    async getCatalogProductDetails(productId: string): Promise<ProductsResponseDto | void> {
-        const headers = await this._preparePaypalRequestHeaders();
-        const environment = this.configService.get("PAYPAL_ENVIRONMENT");
-        const apiUrl = this.configService.getApiUrl(environment);
-        this.logger.log(`request url :: ${apiUrl}/v1/catalogs/products/${productId}`);
-        //
-        const requestUrl = `${apiUrl}/v1/catalogs/products/${productId}`;
-
-        const result = await lastValueFrom(
-            this.httpService.get(requestUrl, { headers })
-            .pipe(
-                map((response) => {
-                    return response.data;
-                }),
-            )
-        );
-        this.logger.log("result.status :: " + result.status);
-        return result;
-    }
 
 }

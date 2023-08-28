@@ -4,7 +4,6 @@ import {PaymentsService} from "@app/api/payments/payments.service";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
 
-@Controller('payments')
 @Controller('v1/payments')
 @ApiTags('PAYMENTS API')
 export class PaymentsController {

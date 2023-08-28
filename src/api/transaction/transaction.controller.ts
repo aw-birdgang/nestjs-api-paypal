@@ -2,7 +2,6 @@ import {Controller, Get, HttpStatus, Logger, Param, Query, Res} from '@nestjs/co
 import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
-import {OrdersService} from "@app/api/orders/orders.service";
 import {TransactionService} from "@app/api/transaction/transaction.service";
 
 @Controller('v1/transaction')

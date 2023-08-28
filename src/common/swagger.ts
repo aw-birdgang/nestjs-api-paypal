@@ -11,10 +11,6 @@ export function setupSwagger(app: INestApplication): void {
     .setTitle(env == 'production' ? 'PROD API Docs' : 'DEV API Docs')
     .setDescription(env == 'production' ? 'PROD API description' : 'DEV API description')
     .setVersion(version)
-    .addBearerAuth(
-      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-      'JWT',
-    )
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
