@@ -1,5 +1,5 @@
-import {Body, Controller, Get, HttpStatus, Logger, Param, Post, Query, Res} from '@nestjs/common';
-import {ApiBearerAuth, ApiNoContentResponse, ApiOkResponse, ApiOperation, ApiTags} from '@nestjs/swagger';
+import {Body, Controller, Get, HttpStatus, Logger, Param, Post, Res} from '@nestjs/common';
+import {ApiOkResponse, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
 import {CatalogProductsService} from "@app/api/catalog-products/catalog-products.service";
@@ -55,6 +55,10 @@ export class CatalogProductsController {
 
 
     @Get(':id')
+    @ApiResponse({
+        status: 200,
+        description: 'The found record',
+    })
     @ApiOperation({
         summary: '제품 정보 조회 API',
         description: '제품 정보 조회 한다.',
