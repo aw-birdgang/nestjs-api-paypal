@@ -1,6 +1,5 @@
 import { IsNotEmpty, Length, MaxLength } from 'class-validator';
-import { AmountBreakDownDto } from '@app/dtos';
-
+import {AmountBreakDownDto} from "./amount-break-down.dto";
 
 export class AmountWithBreakdownDto {
   @IsNotEmpty()

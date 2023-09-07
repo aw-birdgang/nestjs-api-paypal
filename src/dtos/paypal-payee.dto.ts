@@ -1,6 +1,3 @@
-
-
-
 export class PaypalPayeeBaseDto {
   email_address: string;
   merchant_id: string;

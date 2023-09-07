@@ -1,8 +1,8 @@
 import {Controller, Get, HttpStatus, Logger, Res} from '@nestjs/common';
-import {DisputesService} from "@app/api/disputes/disputes.service";
 import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
+import {DisputesService} from "./disputes.service";
 
 @Controller('v1/disputes')
 @ApiTags('DISPUTES API')

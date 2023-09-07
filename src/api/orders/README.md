@@ -126,3 +126,58 @@ fetch('https://api-m.sandbox.paypal.com/v2/checkout/orders/5O190127TN364715T', {
 }
 
 ```
+
+
+
+## Confirm the Order
+```bash
+POST https://api-m.paypal.com/v2/checkout/orders/{id}/confirm-payment-source
+
+> Request samples
+var fetch = require('node-fetch');
+
+fetch('https://api-m.sandbox.paypal.com/v2/checkout/orders/5O190127TN364715T/confirm-payment-source', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer access_token6V7rbVwmlM1gFZKW_8QtzWXqpcwQ6T5vhEGYNJDAAdn3paCgRpdeMdVYmWzgbKSsECednupJ3Zx5Xd-g',
+        'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({ "payment_source": { "paypal": { "name": { "given_name": "John", "surname": "Doe" }, "email_address": "customer@example.com", "experience_context": { "payment_method_preference": "IMMEDIATE_PAYMENT_REQUIRED", "brand_name": "EXAMPLE INC", "locale": "en-US", "landing_page": "LOGIN", "shipping_preference": "SET_PROVIDED_ADDRESS", "user_action": "PAY_NOW", "return_url": "https://example.com/returnUrl", "cancel_url": "https://example.com/cancelUrl" } } } })
+});
+
+
+> Response samples
+{
+  "id": "5O190127TN364715T",
+  "status": "PAYER_ACTION_REQUIRED",
+  "payment_source": {
+    "paypal": {
+      "name": {
+        "given_name": "John",
+        "surname": "Doe"
+      },
+      "email_address": "customer@example.com"
+    }
+  },
+  "payer": {
+    "name": {
+      "given_name": "John",
+      "surname": "Doe"
+    },
+    "email_address": "customer@example.com"
+  },
+  "links": [
+    {
+      "href": "https://api.paypal.com/v2/checkout/orders/5O190127TN364715T",
+      "rel": "self",
+      "method": "GET"
+    },
+    {
+      "href": "https://www.paypal.com/checkoutnow?token=5O190127TN364715T",
+      "rel": "payer-action",
+      "method": "GET"
+    }
+  ]
+}
+
+```

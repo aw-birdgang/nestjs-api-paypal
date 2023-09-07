@@ -1,6 +1,5 @@
 import { Length, Matches } from 'class-validator';
-import { PaypalBrandsEnumDto } from "@app/dtos/common";
-
+import {PaypalBrandsEnumDto} from "./common";
 
 export class PaypalNetworkTransactionReferenceDto {
 

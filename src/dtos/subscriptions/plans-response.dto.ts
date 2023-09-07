@@ -1,4 +1,4 @@
-import {PlanResponseDto} from "@app/dtos/subscriptions/plan-response.dto";
+import {PlanResponseDto} from "./plan-response.dto";
 
 export class PlansResponseDto {
     products: PlanResponseDto[];

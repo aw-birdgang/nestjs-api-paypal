@@ -1,4 +1,6 @@
-import { PaypalNameDto, PaypalPortableAddress, PaypalTaxInfoDto } from '@app/dtos';
+import {PaypalNameDto} from "./paypal-name.dto";
+import {PaypalTaxInfoDto} from "./paypal-tax-info.dto";
+import {PaypalPortableAddress} from "./common";
 
 export class PaypalPayerBaseDto {
   // Maximum length: 254.

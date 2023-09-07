@@ -1,13 +1,12 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
-import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
-import {PayoutsResponseDto} from "@app/dtos/payouts/payouts-response.dto";
 import {firstValueFrom, lastValueFrom, map} from "rxjs";
-import {CreatePlansDto} from "@app/dtos/subscriptions/create-plans.dto";
-import {PlansResponseDto} from "@app/dtos/subscriptions/plans-response.dto";
-import {InitiateSubscriptionsHeadersDto} from "@app/dtos/subscriptions/initiate-subscriptions-headers.dto";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {CreatePlansDto} from "../../dtos/subscriptions/create-plans.dto";
+import {InitiateSubscriptionsHeadersDto} from "../../dtos/subscriptions/initiate-subscriptions-headers.dto";
+import {PayoutsResponseDto} from "../../dtos/payouts/payouts-response.dto";
+import {PlansResponseDto} from "../../dtos/subscriptions/plans-response.dto";
 
 @Injectable()
 export class SubscriptionsService {
@@ -78,7 +77,5 @@ export class SubscriptionsService {
                 )
         );
     }
-
-
 
 }

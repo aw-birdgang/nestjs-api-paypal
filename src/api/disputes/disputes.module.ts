@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import {ConfigModule} from "@app/config";
 import {HttpModule} from "@nestjs/axios";
-import {AuthModule} from "@app/api/auth/auth.module";
-import {DisputesController} from "@app/api/disputes/disputes.controller";
-import {DisputesService} from "@app/api/disputes/disputes.service";
+import {ConfigModule} from "../../config";
+import {AuthModule} from "../auth/auth.module";
+import {DisputesController} from "./disputes.controller";
+import {DisputesService} from "./disputes.service";
 
 @Module({
     imports: [

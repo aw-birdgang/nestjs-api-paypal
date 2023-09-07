@@ -1,9 +1,9 @@
 import {Module} from '@nestjs/common';
-import {ConfigModule} from "@app/config";
 import {HttpModule} from "@nestjs/axios";
-import {AuthModule} from "@app/api/auth/auth.module";
-import {PaymentsService} from "@app/api/payments/payments.service";
-import {PaymentsController} from "@app/api/payments/payments.controller";
+import {ConfigModule} from "../../config";
+import {AuthModule} from "../auth/auth.module";
+import {PaymentsController} from "./payments.controller";
+import {PaymentsService} from "./payments.service";
 
 @Module({
     imports: [

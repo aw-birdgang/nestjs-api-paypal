@@ -10,7 +10,6 @@ export class PaypalPaymentMethodDto {
 
 
 
-
   // The merchant-preferred payment methods.
   // The possible values are:
   //  - UNRESTRICTED. Accepts any type of payment from the customer.

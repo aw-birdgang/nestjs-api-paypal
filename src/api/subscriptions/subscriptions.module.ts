@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import {ConfigModule} from "@app/config";
 import {HttpModule} from "@nestjs/axios";
-import {AuthModule} from "@app/api/auth/auth.module";
-import {SubscriptionsService} from "@app/api/subscriptions/subscriptions.service";
-import {SubscriptionsController} from "@app/api/subscriptions/subscriptions.controller";
+import {ConfigModule} from "../../config";
+import {AuthModule} from "../auth/auth.module";
+import {SubscriptionsController} from "./subscriptions.controller";
+import {SubscriptionsService} from "./subscriptions.service";
 
 @Module({
     imports: [

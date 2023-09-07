@@ -1,9 +1,9 @@
 import {Module} from '@nestjs/common';
-import {ConfigModule} from "@app/config";
 import {HttpModule} from "@nestjs/axios";
-import {AuthModule} from "@app/api/auth/auth.module";
-import {CatalogProductsService} from "@app/api/catalog-products/catalog-products.service";
-import {CatalogProductsController} from "@app/api/catalog-products/catalog-products.controller";
+import {ConfigModule} from "../../config";
+import {AuthModule} from "../auth/auth.module";
+import {CatalogProductsController} from "./catalog-products.controller";
+import {CatalogProductsService} from "./catalog-products.service";
 
 @Module({
     imports: [

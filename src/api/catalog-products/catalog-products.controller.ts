@@ -2,8 +2,8 @@ import {Body, Controller, Get, HttpStatus, Logger, Param, Post, Res} from '@nest
 import {ApiOkResponse, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
-import {CatalogProductsService} from "@app/api/catalog-products/catalog-products.service";
-import {CreateCatalogProductsDto} from "@app/dtos/catalog-products/create-catalog-products.dto";
+import {CatalogProductsService} from "./catalog-products.service";
+import {CreateCatalogProductsDto} from "../../dtos/catalog-products/create-catalog-products.dto";
 
 @Controller('v1/catalog-products')
 @ApiTags('CATALOG PRODUCTS API')

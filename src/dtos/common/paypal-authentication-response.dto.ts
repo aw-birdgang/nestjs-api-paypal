@@ -1,5 +1,6 @@
-import { LiabilityShiftEnumsDto, ThreeDSecureAuthenticationResponseDto } from "@app/dtos";
 import { Length, Matches } from "class-validator";
+import {LiabilityShiftEnumsDto} from "./liability-shift-enums.dto";
+import {ThreeDSecureAuthenticationResponseDto} from "./three-d-secure-authentication-response.dto";
 
 export class PaypalAuthenticationResponseDto {
 

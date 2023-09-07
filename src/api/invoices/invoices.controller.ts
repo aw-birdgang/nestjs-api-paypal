@@ -2,7 +2,7 @@ import {Controller, Get, HttpStatus, Logger, Res} from '@nestjs/common';
 import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
-import {InvoicesService} from "@app/api/invoices/invoices.service";
+import {InvoicesService} from "./invoices.service";
 
 @Controller('v1/invoices')
 @ApiTags('INVOICES API')

@@ -1,9 +1,9 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
-import {InitiateOrderHeadersDto, PaypalOrderDto} from "@app/dtos";
 import {firstValueFrom, map} from "rxjs";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {InitiateOrderHeadersDto, PaypalOrderDto} from "../../dtos";
 
 @Injectable()
 export class PaymentsService {

@@ -1,4 +1,4 @@
-import {ProductsResponseDto} from "@app/dtos/catalog-products/product-response.dto";
+import {ProductsResponseDto} from "./product-response.dto";
 
 export class CatalogsProductsResponseDto {
     total_times: number;

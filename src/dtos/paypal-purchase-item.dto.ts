@@ -1,5 +1,5 @@
 import { IsNotEmpty, Length, MaxLength } from 'class-validator';
-import { PaypalMoneyDto } from '@app/dtos';
+import {PaypalMoneyDto} from "./paypal-money.dto";
 
 
 export class PaypalPurchaseItemDto {

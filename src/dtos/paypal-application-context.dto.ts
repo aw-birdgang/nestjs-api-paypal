@@ -1,6 +1,6 @@
 import { Length, Matches, MaxLength } from 'class-validator';
-import { PaypalPaymentMethodDto, PaypalStoredPaymentSourceDto } from '@app/dtos';
-
+import {PaypalPaymentMethodDto} from "./paypal-payment-method.dto";
+import {PaypalStoredPaymentSourceDto} from "./paypal-stored-payment-source";
 
 export class PaypalApplicationContextDto {
   // The label that overrides the business name in the PayPal account on the PayPal site.
@@ -11,8 +11,6 @@ export class PaypalApplicationContextDto {
   @Length(2, 10)
   @Matches(/^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}))?$/)
   locale?: string;
-
-
 
 
   // The type of landing page to show on the PayPal site for customer checkout.

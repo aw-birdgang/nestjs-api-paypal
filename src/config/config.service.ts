@@ -1,13 +1,13 @@
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
-import { Logger } from '@nestjs/common';
+import {Logger} from "@nestjs/common";
 
 export class ConfigService {
   private readonly envConfig: { [key: string]: any };
 
-  private readonly logger = new Logger(ConfigService.name);
+  private readonly logger = new Logger(ConfigService.toString());
 
-  constructor() { 
+  constructor() {
     this.envConfig = {};
     const envFile = process.env.NODE_ENV === 'production' ? '.env.prod' : process.env.NODE_ENV === 'development' ? '.env.dev' : '.env';
     this.logger.log("ConfigService > envFile :: " + envFile);

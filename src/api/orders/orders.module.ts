@@ -3,7 +3,7 @@ import {ConfigModule} from "../../config";
 import {OrdersController} from "./orders.controller";
 import {OrdersService} from "./orders.service";
 import {HttpModule} from "@nestjs/axios";
-import {AuthModule} from "@app/api/auth/auth.module";
+import {AuthModule} from "../auth/auth.module";
 
 @Module({
     imports: [

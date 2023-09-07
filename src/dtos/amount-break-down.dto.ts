@@ -1,5 +1,4 @@
-import { PaypalMoneyDto } from '@app/dtos';
-
+import {PaypalMoneyDto} from "./paypal-money.dto";
 
 export class AmountBreakDownDto {
   // The subtotal for all items. Required if the request includes purchase_units[].items[].unit_amount.

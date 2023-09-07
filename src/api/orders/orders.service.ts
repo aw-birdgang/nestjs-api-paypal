@@ -1,11 +1,12 @@
 import {HttpStatus, Injectable, Logger} from '@nestjs/common';
 import {AuthService} from "../auth/auth.service";
 import {ConfigService} from "../../config";
-import {CreatePaypalOrderDto, InitiateOrderHeadersDto, PaypalOrderDto} from "@app/dtos";
 import {HttpService} from "@nestjs/axios";
 import {catchError, firstValueFrom, lastValueFrom, map, Observable} from "rxjs";
 import {AxiosError, AxiosResponse} from "axios";
-import {UpdatePaypalOrderDto} from "@app/dtos/order";
+import {CreatePaypalOrderDto, InitiateOrderHeadersDto, PaypalOrderDto} from "../../dtos";
+import {ConfirmPaypalOrderDto} from "../../dtos/order/confirm-paypal-order.dto";
+import {UpdatePaypalOrderDto} from "../../dtos/order";
 
 @Injectable()
 export class OrdersService {
@@ -20,8 +21,9 @@ export class OrdersService {
 
     async _preparePaypalRequestHeaders(customHeaders?: any) {
         const initiateTokenResponse = await this.authService.getAccessToken();
-        const { access_token } = initiateTokenResponse;
-        this.logger.log(`access_token :: ${access_token}`)
+        const { access_token, scope } = initiateTokenResponse;
+        this.logger.log(`access_token :: ${access_token}`);
+        this.logger.log(`scope :: ${scope}`)
         return {
             'Content-Type': 'application/json',
             'Authorization': access_token ? `Bearer ${access_token}` : `Basic ${this.authService.getBasicKey()}`,
@@ -66,7 +68,6 @@ export class OrdersService {
     }
 
 
-
     findOrderById(baseUrl: string, orderId: string): Observable<AxiosResponse<PaypalOrderDto>> {
         return this.httpService.get(`${baseUrl}/v2/checkout/orders/${orderId}`,);
     }
@@ -75,7 +76,6 @@ export class OrdersService {
         const headers = await this._preparePaypalRequestHeaders();
         const environment = this.configService.get("PAYPAL_ENVIRONMENT");
         const apiUrl = this.configService.getApiUrl(environment);
-        orderId = "6VW70343A65796208";
         this.logger.log(`request url :: ${apiUrl}/v2/checkout/orders/${orderId}`);
         //
         const result = await lastValueFrom(
@@ -85,6 +85,27 @@ export class OrdersService {
                     headers
                 }
             ).pipe(
+                map((response) => {
+                    return response.data;
+                }),
+            )
+        );
+        this.logger.log("result.status :: " + result.status);
+        return result;
+    }
+
+
+    async confirmOrder(orderId: string, payload: ConfirmPaypalOrderDto): Promise<PaypalOrderDto | void> {
+        const headers = await this._preparePaypalRequestHeaders();
+        const environment = this.configService.get("PAYPAL_ENVIRONMENT");
+        const apiUrl = this.configService.getApiUrl(environment);
+        orderId = "6VW70343A65796208";
+
+        const requestUrl = `${apiUrl}/v2/checkout/orders/${orderId}`;
+        this.logger.log(`request url :: ${requestUrl}`);
+        //
+        const result = await lastValueFrom(
+            this.httpService.post(requestUrl, payload, { headers }).pipe(
                 map((response) => {
                     return response.data;
                 }),

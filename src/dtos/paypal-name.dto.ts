@@ -1,6 +1,5 @@
 import { IsOptional, MaxLength, MinLength } from 'class-validator';
 
-
 export class PaypalNameDto {
   // The prefix, or title, to the party's name.
   // Maximum length: 140.

@@ -1,12 +1,12 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
-import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
 import {firstValueFrom, lastValueFrom, map} from "rxjs";
-import {CreatePayoutsDto} from "@app/dtos/payouts/create-payouts.dto";
-import {PayoutsResponseDto} from "@app/dtos/payouts/payouts-response.dto";
-import {ProductsResponseDto} from "@app/dtos/catalog-products/product-response.dto";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {ProductsResponseDto} from "../../dtos/catalog-products/product-response.dto";
+import {InitiateCatalogProductsHeadersDto} from "../../dtos/catalog-products/initiate-catalog-product-headers.dto";
+import {CreatePayoutsDto} from "../../dtos/payouts/create-payouts.dto";
+import {PayoutsResponseDto} from "../../dtos/payouts/payouts-response.dto";
 
 @Injectable()
 export class PayoutsService {
@@ -76,7 +76,5 @@ export class PayoutsService {
         this.logger.log("result.status :: " + result.status);
         return result;
     }
-
-
 
 }

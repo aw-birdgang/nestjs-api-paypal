@@ -1,4 +1,4 @@
-import {DisputeResponseDto} from "@app/dtos/disputes/dispute-response.dto";
+import {DisputeResponseDto} from "./dispute-response.dto";
 
 export class DisputesResponseDto {
     products: DisputeResponseDto[];

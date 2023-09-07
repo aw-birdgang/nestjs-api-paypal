@@ -1,6 +1,6 @@
 import {Controller, Logger, Post} from '@nestjs/common';
 import {ApiOperation, ApiTags} from "@nestjs/swagger";
-import {AuthService} from "@app/api/auth/auth.service";
+import {AuthService} from "./auth.service";
 
 @Controller('v1/auth')
 @ApiTags('AUTH API')

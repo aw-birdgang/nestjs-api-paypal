@@ -1,6 +1,3 @@
-
-
-
 export * from './paypal-portable-address.dto';
 export * from './paypal-brands-enum.dto'
 export * from './paypal-authentication-response.dto'

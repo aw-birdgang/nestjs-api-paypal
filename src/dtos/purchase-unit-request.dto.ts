@@ -1,9 +1,9 @@
 import { MaxLength } from 'class-validator';
-import { AmountWithBreakdownDto } from '@app/dtos/amount-with-breakdown.dto';
-import { PaypalPayeeDto } from '@app/dtos/paypal-payee.dto';
-import { PaypalPaymentInstructionDto } from '@app/dtos/paypal-payment-instruction.dto';
-import { PaypalPurchaseItemDto } from '@app/dtos/paypal-purchase-item.dto';
-import { PaypalShippingDto } from '@app/dtos/paypal-shipping.dto';
+import {AmountWithBreakdownDto} from "./amount-with-breakdown.dto";
+import {PaypalPayeeDto} from "./paypal-payee.dto";
+import {PaypalPaymentInstructionDto} from "./paypal-payment-instruction.dto";
+import {PaypalPurchaseItemDto} from "./paypal-purchase-item.dto";
+import {PaypalShippingDto} from "./paypal-shipping.dto";
 
 
 export class PurchaseUnitRequestDto {

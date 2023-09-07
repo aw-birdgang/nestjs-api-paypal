@@ -2,8 +2,8 @@ import {Body, Controller, Get, HttpStatus, Logger, Post, Res} from '@nestjs/comm
 import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
-import {SubscriptionsService} from "@app/api/subscriptions/subscriptions.service";
-import {CreatePlansDto} from "@app/dtos/subscriptions/create-plans.dto";
+import {CreatePlansDto} from "../../dtos/subscriptions/create-plans.dto";
+import {SubscriptionsService} from "./subscriptions.service";
 
 @Controller('v1/subscriptions')
 @ApiTags('SUBSCRIPTIONS API')

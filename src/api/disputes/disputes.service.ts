@@ -1,12 +1,12 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
-import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
 import {firstValueFrom, lastValueFrom, map} from "rxjs";
-import {CreateDisputesDto} from "@app/dtos/disputes/create-disputes.dto";
-import {DisputeResponseDto} from "@app/dtos/disputes/dispute-response.dto";
-import {DisputesResponseDto} from "@app/dtos/disputes/disputes-response.dto";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {CreateDisputesDto} from "../../dtos/disputes/create-disputes.dto";
+import {InitiateCatalogProductsHeadersDto} from "../../dtos/catalog-products/initiate-catalog-product-headers.dto";
+import {DisputeResponseDto} from "../../dtos/disputes/dispute-response.dto";
+import {DisputesResponseDto} from "../../dtos/disputes/disputes-response.dto";
 
 @Injectable()
 export class DisputesService {

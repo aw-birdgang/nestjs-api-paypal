@@ -1,8 +1,8 @@
 import {Controller, Get, HttpStatus, Logger, Param, Query, Res} from '@nestjs/common';
 import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
-import {PaymentsService} from "@app/api/payments/payments.service";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
+import {PaymentsService} from "./payments.service";
 
 @Controller('v1/payments')
 @ApiTags('PAYMENTS API')

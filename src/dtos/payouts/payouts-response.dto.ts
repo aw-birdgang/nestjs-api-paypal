@@ -1,4 +1,4 @@
-import {SenderBatchHeaderDto} from "@app/dtos/payouts/sender_batch_header.dto";
+import {SenderBatchHeaderDto} from "./sender_batch_header.dto";
 
 export class PayoutsResponseDto {
     sender_batch_header?: SenderBatchHeaderDto;

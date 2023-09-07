@@ -1,14 +1,12 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
-import {CreateDisputesDto} from "@app/dtos/disputes/create-disputes.dto";
-import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
-import {DisputeResponseDto} from "@app/dtos/disputes/dispute-response.dto";
 import {firstValueFrom, lastValueFrom, map} from "rxjs";
-import {DisputesResponseDto} from "@app/dtos/disputes/disputes-response.dto";
-import {InvoicesResponseDto} from "@app/dtos/invoices/invoices-response.dto";
-import {InvoiceResponseDto} from "@app/dtos/invoices/invoice-response.dto";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {CreateDisputesDto} from "../../dtos/disputes/create-disputes.dto";
+import {InitiateCatalogProductsHeadersDto} from "../../dtos/catalog-products/initiate-catalog-product-headers.dto";
+import {InvoiceResponseDto} from "../../dtos/invoices/invoice-response.dto";
+import {InvoicesResponseDto} from "../../dtos/invoices/invoices-response.dto";
 
 @Injectable()
 export class InvoicesService {

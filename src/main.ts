@@ -1,7 +1,9 @@
 import {HttpAdapterHost, NestFactory} from '@nestjs/core';
 import { AppModule } from './app.module';
-import {ConfigService} from "@app/config";
-import {setupSwagger} from "@app/common/swagger";
+import {setupSwagger} from "./common/swagger";
+import {ConfigService} from "./config";
+// import {ConfigService} from "@app/config";
+// import {setupSwagger} from "@app/common/swagger";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

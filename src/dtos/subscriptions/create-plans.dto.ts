@@ -1,5 +1,5 @@
-import {BillingCycleDto} from "@app/dtos/subscriptions/billing_cycle.dto";
-import {PaymentPreferences} from "@app/dtos/subscriptions/payment_preferences.dto";
+import {BillingCycleDto} from "./billing_cycle.dto";
+import {PaymentPreferences} from "./payment_preferences.dto";
 
 export class CreatePlansDto {
   product_id?: string;

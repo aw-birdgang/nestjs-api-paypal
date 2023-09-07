@@ -1,11 +1,6 @@
 import { Length, Matches } from "class-validator";
-import {
-  CardsTypesEnumDto,
-  PaypalAuthenticationResponseDto,
-  PaypalBrandsEnumDto,
-  PaypalPortableAddress
-} from "@app/dtos";
-
+import {PaypalAuthenticationResponseDto, PaypalBrandsEnumDto, PaypalPortableAddress} from "../common";
+import {CardsTypesEnumDto} from "./cards-types-enum.dto";
 
 export class CardResponseDto {
   // The card holder's name as it appears on the card.

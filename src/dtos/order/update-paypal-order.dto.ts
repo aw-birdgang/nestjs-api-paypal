@@ -1,6 +1,7 @@
 import { IsArray, IsNotEmpty, IsOptional } from "class-validator";
-
-import { PaypalOperationDto, PaypalPayerDto, PurchaseUnitRequestDto } from "@app/dtos";
+import {PaypalPayerDto} from "../paypal-payer.dto";
+import {PurchaseUnitRequestDto} from "../purchase-unit-request.dto";
+import {PaypalOperationDto} from "../common";
 
 export class AllowedValueToPatchOrderDto {
 
@@ -27,8 +28,6 @@ export class UpdatePaypalOrderDto {
   @IsOptional()
   value?: any;
 
-
   @IsOptional()
   from?: string;
-
 }

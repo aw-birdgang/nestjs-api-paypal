@@ -1,5 +1,5 @@
-import { PaypalPlatformFeeDto } from '@app/dtos';
 import { Length } from 'class-validator';
+import {PaypalPlatformFeeDto} from "./paypal-platform-fee.dto";
 
 export class PaypalPaymentInstructionDto {
 

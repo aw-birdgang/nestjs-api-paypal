@@ -1,9 +1,9 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
-import {CreatePaypalOrderDto, InitiateOrderHeadersDto, InitiateTokenResponseDto, PaypalOrderDto} from "@app/dtos";
 import {firstValueFrom, lastValueFrom, map} from "rxjs";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {CreatePaypalOrderDto, InitiateTokenResponseDto} from "../../dtos";
 
 @Injectable()
 export class TransactionService {
@@ -30,15 +30,15 @@ export class TransactionService {
 
         const payload: CreatePaypalOrderDto = {
             intent: "CAPTURE",
-            purchase_units: [
-                {
-                    amount: {
-                        "currency_code": "USD",
-                        "value": "100.00"
-                    },
-                    reference_id: "monitor"
-                }
-            ]
+            // purchase_units: [
+            //     {
+            //         amount: {
+            //             "currency_code": "USD",
+            //             "value": "100.00"
+            //         },
+            //         reference_id: "monitor"
+            //     }
+            // ]
         };
 
         return {

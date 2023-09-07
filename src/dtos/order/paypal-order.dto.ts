@@ -1,12 +1,9 @@
-/*
-* A successful request returns the HTTP 201 Created status code and a JSON response body that includes by default a minimal response with the ID, status, and HATEOAS links.
-*  If you require the complete order resource representation, you must pass the Prefer: return=representation request header. This header value is not the default.
-* */
-
 import { Matches } from 'class-validator';
-import { PaymentSourceResponseDto } from "@app/dtos/payment-source-response.dto";
-import { PaypalLinkDescriptionDto, PaypalPayerDto, PurchaseUnitRequestDto } from "@app/dtos";
-import { PaypalOrderStatusDto } from "@app/dtos/order/paypal-order-status.dto";
+import {PaymentSourceResponseDto} from "../payment-source-response.dto";
+import {PaypalPayerDto} from "../paypal-payer.dto";
+import {PurchaseUnitRequestDto} from "../purchase-unit-request.dto";
+import {PaypalOrderStatusDto} from "./paypal-order-status.dto";
+import {PaypalLinkDescriptionDto} from "../common";
 
 export class PaypalOrderDto {
 

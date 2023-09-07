@@ -1,5 +1,5 @@
-import {SenderBatchHeaderDto} from "@app/dtos/payouts/sender_batch_header.dto";
-import {ItemDto} from "@app/dtos/payouts/item.dto";
+import {ItemDto} from "./item.dto";
+import {SenderBatchHeaderDto} from "./sender_batch_header.dto";
 
 export class CreatePayoutsDto {
   items?: ItemDto[];

@@ -1,7 +1,7 @@
 import { Length, Matches } from 'class-validator';
-import { PaypalNetworkTransactionReferenceDto, PaypalStoredPaymentSourcePaymentTypeDto, PaypalStoredPaymentSourceUsageTypeDto } from '@app/dtos';
-
-
+import {PaypalStoredPaymentSourcePaymentTypeDto} from "./paypal-stored-payment-source-payment-type.dto";
+import {PaypalStoredPaymentSourceUsageTypeDto} from "./paypal-stored-payment-source-usage-type.dto";
+import {PaypalNetworkTransactionReferenceDto} from "../paypal-network-transaction-reference.dto";
 
 export class PaypalStoredPaymentSourceDto {
   // The person or party who initiated or triggered the payment.

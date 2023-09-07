@@ -1,10 +1,10 @@
 import {Body, Controller, Get, HttpStatus, Logger, Param, Post, Res} from '@nestjs/common';
-import {ApiOkResponse, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {CreateCatalogProductsDto} from "@app/dtos/catalog-products/create-catalog-products.dto";
+import {ApiOkResponse, ApiOperation, ApiTags} from "@nestjs/swagger";
 import {Response} from "express";
 import {instanceToPlain} from "class-transformer";
-import {PayoutsService} from "@app/api/payouts/payouts.service";
-import {CreatePayoutsDto} from "@app/dtos/payouts/create-payouts.dto";
+import {PayoutsService} from "./payouts.service";
+import {CreateCatalogProductsDto} from "../../dtos/catalog-products/create-catalog-products.dto";
+import {CreatePayoutsDto} from "../../dtos/payouts/create-payouts.dto";
 
 @Controller('v1/payouts')
 @ApiTags('PAYOUTS API')

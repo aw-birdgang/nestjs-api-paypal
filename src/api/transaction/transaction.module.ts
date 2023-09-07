@@ -1,9 +1,9 @@
 import {Module} from '@nestjs/common';
-import {ConfigModule} from "@app/config";
 import {HttpModule} from "@nestjs/axios";
-import {AuthModule} from "@app/api/auth/auth.module";
-import {TransactionService} from "@app/api/transaction/transaction.service";
-import {TransactionController} from "@app/api/transaction/transaction.controller";
+import {AuthModule} from "../auth/auth.module";
+import {ConfigModule} from "../../config";
+import {TransactionController} from "./transaction.controller";
+import {TransactionService} from "./transaction.service";
 
 @Module({
     imports: [

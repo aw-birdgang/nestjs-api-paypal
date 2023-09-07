@@ -4,7 +4,7 @@ import {PAYPAL_AUTHORIZATION_HEADERS} from "../../constants";
 import {InitiateTokenResponseDto} from "../../dtos";
 import {lastValueFrom, map} from 'rxjs';
 import {HttpService} from "@nestjs/axios";
-import {ConfigService} from "@app/config";
+import {ConfigService} from "../../config";
 
 @Injectable()
 export class AuthService {

@@ -1,5 +1,5 @@
 import { Length, Matches, MaxLength } from 'class-validator';
-import { PaypalPortableAddress } from "@app/dtos/common";
+import {PaypalPortableAddress} from "./common";
 
 
 export class PaypalShippingName {

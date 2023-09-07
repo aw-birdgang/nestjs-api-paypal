@@ -1,12 +1,12 @@
 import {Injectable, Logger} from '@nestjs/common';
-import {ConfigService} from "@app/config";
 import {HttpService} from "@nestjs/axios";
-import {AuthService} from "@app/api/auth/auth.service";
 import {firstValueFrom, lastValueFrom, map} from "rxjs";
-import {InitiateCatalogProductsHeadersDto} from "@app/dtos/catalog-products/initiate-catalog-product-headers.dto";
-import {CatalogsProductsResponseDto} from "@app/dtos/catalog-products/catalogs-product-response.dto";
-import {ProductsResponseDto} from "@app/dtos/catalog-products/product-response.dto";
-import {CreateCatalogProductsDto} from "@app/dtos/catalog-products/create-catalog-products.dto";
+import {ConfigService} from "../../config";
+import {AuthService} from "../auth/auth.service";
+import {CreateCatalogProductsDto} from "../../dtos/catalog-products/create-catalog-products.dto";
+import {InitiateCatalogProductsHeadersDto} from "../../dtos/catalog-products/initiate-catalog-product-headers.dto";
+import {ProductsResponseDto} from "../../dtos/catalog-products/product-response.dto";
+import {CatalogsProductsResponseDto} from "../../dtos/catalog-products/catalogs-product-response.dto";
 
 @Injectable()
 export class CatalogProductsService {
