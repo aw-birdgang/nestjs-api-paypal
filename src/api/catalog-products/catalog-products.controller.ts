@@ -67,10 +67,10 @@ export class CatalogProductsController {
         description: '제품 정보를 조회 한다.',
     })
     async getCatalogProductDetails(
-        @Param('id') id: string,
+        @Param('id') id: string, //"PROD-96H18050RJ216833P"
         @Res() res: Response,
     ) {
-        const response = await this.catalogService.getCatalogProductDetails("PROD-96H18050RJ216833P");
+        const response = await this.catalogService.getCatalogProductDetails(id);
         return res.status(HttpStatus.OK).json(instanceToPlain(response));
     }
 
