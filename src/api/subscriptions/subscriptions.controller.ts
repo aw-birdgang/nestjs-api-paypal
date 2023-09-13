@@ -97,8 +97,6 @@ export class SubscriptionsController {
         return res.status(HttpStatus.OK).json(instanceToPlain(response));
     }
 
-
-
     @Get()
     @ApiOperation({
         summary: '구독 정보 API',
@@ -113,6 +111,5 @@ export class SubscriptionsController {
         const response = await this.subscriptionsService.getPlans();
         return res.status(HttpStatus.OK).json(instanceToPlain(response));
     }
-
 
 }

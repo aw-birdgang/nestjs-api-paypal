@@ -8,6 +8,7 @@ import { DisputesModule } from './api/disputes/disputes.module';
 import { InvoicesModule } from './api/invoices/invoices.module';
 import { PayoutsModule } from './api/payouts/payouts.module';
 import { SubscriptionsModule } from './api/subscriptions/subscriptions.module';
+import { AddTrackingModule } from './api/add-tracking/add-tracking.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { SubscriptionsModule } from './api/subscriptions/subscriptions.module';
     InvoicesModule,
     PayoutsModule,
     SubscriptionsModule,
+    AddTrackingModule,
   ],
 })
 export class AppModule {}

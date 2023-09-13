@@ -99,11 +99,11 @@ export class OrdersController {
         description: '주문 정보를 조회 한다.',
     })
     async getOrderDetails(
-        @Param('id') id: string,
+        @Param('id') id: string, //"6VW70343A65796208"
         @Query('paid') read: number,
         @Res() res: Response,
     ) {
-        const response = await this.ordersService.getOrderDetails("6VW70343A65796208");
+        const response = await this.ordersService.getOrderDetails(id);
         return res.status(HttpStatus.OK).json(instanceToPlain(response));
     }
 

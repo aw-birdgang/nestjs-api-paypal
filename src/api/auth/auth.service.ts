@@ -23,7 +23,9 @@ export class AuthService {
     }
 
     async getAccessToken(): Promise<InitiateTokenResponseDto> {
-        const url = 'https://api-m.sandbox.paypal.com/v1/oauth2/token';
+        const environment = this.configService.get("PAYPAL_ENVIRONMENT");
+        const apiUrl = this.configService.getApiUrl(environment);
+        const url = `${apiUrl}/v1/oauth2/token`;
         const basicKey = this.getBasicKey();
         const data = new URLSearchParams();
         data.append('grant_type' , 'client_credentials');

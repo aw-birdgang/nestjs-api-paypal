@@ -59,10 +59,10 @@ export class PayoutsController {
         description: '지불금 정보를 조회 한다.',
     })
     async getCatalogProductDetails(
-        @Param('id') id: string,
+        @Param('id') id: string, //"PROD-96H18050RJ216833P"
         @Res() res: Response,
     ) {
-        const response = await this.payoutsService.getPayoutItemDetails("PROD-96H18050RJ216833P");
+        const response = await this.payoutsService.getPayoutItemDetails(id);
         return res.status(HttpStatus.OK).json(instanceToPlain(response));
     }
 }

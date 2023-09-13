@@ -27,20 +27,6 @@ export class TransactionService {
         const { access_token } = initiateTokenResponse;
         this.logger.log(`access_token :: ${access_token}`);
 
-
-        const payload: CreatePaypalOrderDto = {
-            intent: "CAPTURE",
-            // purchase_units: [
-            //     {
-            //         amount: {
-            //             "currency_code": "USD",
-            //             "value": "100.00"
-            //         },
-            //         reference_id: "monitor"
-            //     }
-            // ]
-        };
-
         return {
             'X-PAYPAL-SECURITY-CONTEXT': '{"version":"1.2","actor":{"client_id":"AZiIT7ppKUStdPSrY4pgORnHP7PLRlxubrC2fl4GjS7FN8kvh8YD6CoHNbP3s9iLWzK_VX3UPxK8DROZ","id":"35740404","auth_claims":["CLIENT_ID_SECRET"],"auth_state":"LOGGEDIN","account_number":"1480460762532829633","encrypted_account_number":"JVH3C98SC4E84","party_id":"1480460762532829633","user_type":"API_CALLER"},"auth_token_type":"ACCESS_TOKEN","scopes":["https://uri.paypal.com/services/reporting/search/read"],"client_id":"AZiIT7ppKUStdPSrY4pgORnHP7PLRlxubrC2fl4GjS7FN8kvh8YD6CoHNbP3s9iLWzK_VX3UPxK8DROZ","app_id":"APP-80W284485P519543T","claims":{"actor_payer_id":"JVH3C98SC4E84","internal_application":"false"},"subjects":[{"subject":{"id":"35762049","auth_claims":["PAYER_ID"],"auth_state":"IDENTIFIED","account_number":"1256692217768566521","encrypted_account_number":"XZXSPECPDZHZU","party_id":"2277051500535724448","user_type":"MERCHANT"},"features":[]}]}',
             'Content-Type': 'application/json',
@@ -51,13 +37,13 @@ export class TransactionService {
 
     async getTransactions(): Promise<InitiateTokenResponseDto> {
         const headers = await this._preparePaypalRequestHeaders();
+        const environment = this.configService.get("PAYPAL_ENVIRONMENT");
+        const apiUrl = this.configService.getApiUrl(environment);
+        const requestUrl = `${apiUrl}/v1/reporting/transactions`;
+        this.logger.log("getTransactions > requestUrl :: " + requestUrl);
+
         return await lastValueFrom(
-            this.httpService.get(
-                'https://api-m.sandbox.paypal.com/v1/reporting/transactions',
-                {
-                    headers
-                }
-            )
+            this.httpService.get(requestUrl, { headers })
             .pipe(
                 map(response => response?.data),
                 // catchError((error: AxiosError) => {
